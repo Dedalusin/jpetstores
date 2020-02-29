@@ -25,18 +25,19 @@ public class AccountService {
   public void insertAccount(Account account) {
     accountDAOimpl=new AccountDAOimpl();
     accountDAOimpl.insertAccount(account);
-    /*accountDAOimpl.insertProfile(account);
-    accountDAOimpl.insertSignon(account);*/
+    accountDAOimpl.insertProfile(account);
+    accountDAOimpl.insertSignon(account);
   }
 
-/*
+
   public void updateAccount(Account account) {
+    AccountDAOimpl accountDAOimpl = new AccountDAOimpl();
     accountDAOimpl.updateAccount(account);
     accountDAOimpl.updateProfile(account);
 
     if (account.getPassword() != null && account.getPassword().length() > 0) {
       accountDAOimpl.updateSignon(account);
     }
-  }*/
+  }
 
 }

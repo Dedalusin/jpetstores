@@ -126,27 +126,97 @@ public class AccountDAOimpl implements AccountDAO {
     }
 
     @Override
-    public void insertProfile(Account account) {
-
+    public void updateAccount(Account account) {
+        try {
+            Connection connection= DBUtil.getConnection();
+            PreparedStatement pStatement=connection.prepareStatement(updateAccountString);
+            pStatement.setString(1,account.getEmail());
+            pStatement.setString(2,account.getFirstName());
+            pStatement.setString(3,account.getLastName());
+            pStatement.setString(4,account.getStatus());
+            pStatement.setString(5,account.getAddress1());
+            pStatement.setString(6,account.getAddress2());
+            pStatement.setString(7,account.getCity());
+            pStatement.setString(8,account.getState());
+            pStatement.setString(9,account.getZip());
+            pStatement.setString(10,account.getCountry());
+            pStatement.setString(11,account.getPhone());
+            pStatement.setString(12,account.getUsername());
+            pStatement.executeUpdate();
+            DBUtil.closePreparedStatement(pStatement);
+            DBUtil.closeConnection(connection);
+        }catch (Exception e)
+        {
+            e.printStackTrace();
+        }
     }
-
     @Override
     public void insertSignon(Account account) {
-
-    }
-
-    @Override
-    public void updateAccount(Account account) {
-
-    }
-
-    @Override
-    public void updateProfile(Account account) {
-
+        try {
+            Connection connection= DBUtil.getConnection();
+            PreparedStatement pStatement=connection.prepareStatement(insertSignonString);
+            pStatement.setString(1,account.getPassword());
+            pStatement.setString(2,account.getUsername());
+            pStatement.executeUpdate();
+            DBUtil.closePreparedStatement(pStatement);
+            DBUtil.closeConnection(connection);
+        }catch (Exception e)
+        {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void updateSignon(Account account) {
+        try {
+            Connection connection= DBUtil.getConnection();
+            PreparedStatement pStatement=connection.prepareStatement(updateSignonString);
+            pStatement.setString(1,account.getPassword());
+            pStatement.setString(2,account.getUsername());
+            pStatement.executeUpdate();
+            DBUtil.closePreparedStatement(pStatement);
+            DBUtil.closeConnection(connection);
+        }catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
 
+    @Override
+    public void insertProfile(Account account) {
+        try {
+            Connection connection= DBUtil.getConnection();
+            PreparedStatement pStatement=connection.prepareStatement(insertProfileString);
+            pStatement.setString(1,account.getLanguagePreference());
+            pStatement.setString(2,account.getFavouriteCategoryId());
+            pStatement.setString(3,"1");
+            pStatement.setString(4,"1");
+            pStatement.setString(5,account.getUsername());
+            pStatement.executeUpdate();
+            DBUtil.closePreparedStatement(pStatement);
+            DBUtil.closeConnection(connection);
+        }catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void updateProfile(Account account) {
+        try {
+            Connection connection= DBUtil.getConnection();
+            PreparedStatement pStatement=connection.prepareStatement(updateProfileString);
+            pStatement.setString(1,account.getLanguagePreference());
+            pStatement.setString(2,account.getFavouriteCategoryId());
+            pStatement.setString(3,"1");
+            pStatement.setString(4,"1");
+            pStatement.setString(5,account.getUsername());
+            pStatement.executeUpdate();
+            DBUtil.closePreparedStatement(pStatement);
+            DBUtil.closeConnection(connection);
+        }catch (Exception e)
+        {
+            e.printStackTrace();
+        }
     }
 }
