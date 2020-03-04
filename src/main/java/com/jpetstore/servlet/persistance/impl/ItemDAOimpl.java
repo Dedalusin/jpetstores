@@ -19,7 +19,7 @@ public class ItemDAOimpl implements ItemDAO {
     private static final String updateInventoryQuantityString="UPDATE INVENTORY SET QTY = QTY - ? WHERE ITEMID =?";
     @Override
     public void updateInventoryQuantity(Map<String, Object> param) {
-    try {
+        try {
         Connection connection= DBUtil.getConnection();
         PreparedStatement pstatement=connection.prepareStatement(updateInventoryQuantityString);
         String itemId=param.keySet().iterator().next();
